@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ plumber.name }}'s Profile</h1>
+  <h2>Services</h2>
+  <ul>
+    {% for service in plumber.services %}
+      <li>{{ service.name }} - ${{ service.price }}</li>
+    {% endfor %}
+  </ul>
+  
+  <h2>Reviews</h2>
+  <ul>
+    {% for review in reviews %}
+      <li>
+        <strong>{{ review.rating }} stars</strong>
+        <p>{{ review.body }}</p>
+        <small>By {{ review.user.username }} on {{ review.timestamp.strftime('%Y-%m-%d') }}</small>
+      </li>
+    {% endfor %}
+  </ul>
+  
+  <h2>Submit a Review</h2>
+  <form method="post">
+    {{ form.hidden_tag() }}
+    <div>
+      {{ form.rating.label }}<br>
+      {{ form.rating(size=32) }}<br>
+    </div>
+    <div>
+      {{ form.body.label }}<br>
+      {{ form.body(rows=5, cols=40) }}<br>
+    </div>
+    <div>
+      {{ form.submit() }}
+    </div>
+  </form>
+{% endblock %}

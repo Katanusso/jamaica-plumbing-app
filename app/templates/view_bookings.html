@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>My Bookings</h2>
+    {% if bookings %}
+        <ul>
+        {% for booking in bookings %}
+            <li>
+                Service: {{ booking.service.name }}<br>
+                Date: {{ booking.date }}<br>
+                Status: {{ booking.status }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no bookings.</p>
+    {% endif %}
+{% endblock %}

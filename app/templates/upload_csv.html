@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Upload CSV</h1>
+  <form method="POST" action="{{ url_for('main.upload_csv') }}" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.file.label }}<br>
+    {{ form.file() }}<br><br>
+    <input type="submit" value="Upload">
+  </form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Add Service</h1>
+  <form method="POST" action="{{ url_for('main.add_service') }}">
+    {{ form.hidden_tag() }}
+    {{ service_form.name.label }}<br>
+    {{ service_form.name(size=32) }}<br>
+    {{ service_form.min_price.label }}<br>
+    {{ service_form.min_price(size=32) }}<br>
+    {{ service_form.max_price.label }}<br>
+    {{ service_form.max_price(size=32) }}<br>
+    <input type="submit" value="Add Service">
+  </form>
+
+  <hr>
+
+  <h2>Upload Services via CSV</h2>
+  <form method="POST" action="{{ url_for('main.upload_csv') }}" enctype="multipart/form-data">
+    {{ csv_form.hidden_tag() }}
+    {{ csv_form.file.label }}<br>
+    {{ csv_form.file }}<br>
+    <input type="submit" value="Upload CSV">
+  </form>
+{% endblock %}

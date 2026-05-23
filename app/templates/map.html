@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<div id="map" style="height: 500px; width: 100%;"></div>
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 18.0127, lng: -76.7983 },  // Default to St. Andrew, Jamaica
+            zoom: 12
+        });
+
+        // Try HTML5 geolocation to get user's current location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                // Add marker for user's location
+                var userMarker = new google.maps.Marker({
+                    position: userLocation,
+                    map: map,
+                    title: 'Your Location'
+                });
+
+                map.setCenter(userLocation);
+            }, function() {
+                handleLocationError(true, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, map.getCenter());
+        }
+
+        // Fetch and display plumbers' locations
+        fetchPlumbers(map);
+    }
+
+    function handleLocationError(browserHasGeolocation, pos) {
+        var infoWindow = new google.maps.InfoWindow({
+            map: map
+        });
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+    }
+
+    function fetchPlumbers(map) {
+        fetch('/api/plumbers')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(plumber => {
+                    var plumberLocation = {
+                        lat: plumber.latitude,
+                        lng: plumber.longitude
+                    };
+
+                    // Add marker for plumber's location
+                    new google.maps.Marker({
+                        position: plumberLocation,
+                        map: map,
+                        title: plumber.name
+                    });
+                });
+            })
+            .catch(error => console.error('Error fetching plumbers:', error));
+    }
+</script>
+{% endblock %}

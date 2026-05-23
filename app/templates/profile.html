@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Profile</h1>
+  <p>Welcome, {{ current_user.username }}!</p>
+  <a href="{{ url_for('main.add_service') }}">Add a New Service</a><br>
+  <a href="{{ url_for('main.view_services') }}">View My Services</a><br>
+  <!-- Assuming you have a default service ID, update the service_id accordingly -->
+  <a href="{{ url_for('main.update_status', service_id=1) }}">Update Status</a>
+{% endblock %}

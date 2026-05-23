@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Update Status</h1>
+<form method="POST" action="{{ url_for('main.update_status') }}">
+    {{ status_form.hidden_tag() }}
+    <div class="form-group">
+        {{ status_form.status.label }}
+        {{ status_form.status(class="form-control") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Update Status</button>
+</form>
+{% endblock %}

@@ -1,0 +1,227 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    {% if google_maps_api_key %}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap" async defer></script>
+    {% endif %}
+</head>
+
+<body>
+
+    <nav>
+        <ul class="navbar">
+
+            <li>
+                <a href="{{ url_for('main.index') }}">Home</a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('main.about') }}">About Us</a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('main.profile') }}">Profile</a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('main.add_service') }}">Add Service</a>
+            </li>
+
+            <!-- FIXED -->
+            <li>
+                <a href="{{ url_for('main.view_services') }}">Book Service</a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('main.view_services') }}">
+                    View and Manage Services
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('main.view_bookings') }}">
+                    View Bookings
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('main.map_view') }}">Map</a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('main.logout') }}">Logout</a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                <ul class="flashes">
+
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">
+                            {{ message }}
+                        </li>
+                    {% endfor %}
+
+                </ul>
+
+            {% endif %}
+
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+    </div>
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-section">
+
+                <h3>Get to Know Us</h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="{{ url_for('main.about') }}">About Us</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Our Mission</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Contact Us</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Careers</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-section">
+
+                <h3>Services</h3>
+
+                <ul class="footer-links">
+
+                    <!-- FIXED -->
+                    <li>
+                        <a href="{{ url_for('main.view_services') }}">
+                            Book a Service
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('main.view_services') }}">
+                            View Services
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('main.profile') }}">
+                            Plumber Profiles
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">Reviews & Ratings</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-section">
+
+                <h3>Support</h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="#">Help Center</a>
+                    </li>
+
+                    <li>
+                        <a href="#">FAQs</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Customer Support</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Terms of Service</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Privacy Policy</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-section">
+
+                <h3>Account</h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="{{ url_for('main.profile') }}">
+                            My Account
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('main.view_bookings') }}">
+                            My Bookings
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">Payment Methods</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Order History</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2024 Jamaica Plumbing Services.
+                All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
+```

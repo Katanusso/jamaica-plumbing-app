@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="POST" action="{{ url_for('main.book_service', service_id=service_id) }}">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.service.label }}<br>
+        {{ form.service(class_='form-control') }}<br>
+    </div>
+    <div>
+        {{ form.date.label }}<br>
+        {{ form.date(class_='form-control') }}<br>
+    </div>
+    <div>
+        {{ form.time.label }}<br>
+        {{ form.time(class_='form-control') }}<br>
+    </div>
+    <div>
+        {{ form.description.label }}<br>
+        {{ form.description(class_='form-control') }}<br>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Book</button>
+    </div>
+</form>
+{% endblock %}

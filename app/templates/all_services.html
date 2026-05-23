@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>All Services</title>
+</head>
+<body>
+    <h1>All Services</h1>
+    <ul>
+    {% for service in services %}
+        <li>{{ service.name }}: {{ service.min_price }} - {{ service.max_price }} (Plumber ID: {{ service.plumber_id }})</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

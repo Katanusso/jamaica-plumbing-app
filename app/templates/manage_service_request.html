@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Manage Service Request</h1>
+  <form method="post" action="{{ url_for('main.manage_service_request', booking_id=booking.id) }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ request_form.status.label }}<br>
+      {{ request_form.status(size=32, class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ request_form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+  <p><strong>Service:</strong> {{ booking.service.name }}</p>
+  <p><strong>Date:</strong> {{ booking.date }}</p>
+  <p><strong>User:</strong> {{ booking.user.username }}</p>
+{% endblock %}

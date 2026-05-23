@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Submit Review</h1>
+  <form method="POST" action="{{ url_for('main.review', plumber_id=plumber_id) }}">
+    {{ form.hidden_tag() }}
+    <div>
+      {{ form.body.label }} {{ form.body() }}
+    </div>
+    <div>
+      {{ form.submit() }}
+    </div>
+  </form>
+{% endblock %}

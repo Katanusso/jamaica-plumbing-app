@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar-menu">
+            <li><a href="{{ url_for('main.index') }}">Home</a></li>
+            <li><a href="{{ url_for('main.about') }}">About Us</a></li>
+            <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('main.add_service') }}">Add Service</a></li>
+            <li><a href="{{ url_for('main.book_service', service_id=1) }}">Book Service</a></li>
+            <li><a href="{{ url_for('main.view_services') }}">View and Manage Services</a></li>
+            <li><a href="{{ url_for('main.view_bookings') }}">View Bookings</a></li>
+            <li><a href="{{ url_for('main.map_view') }}">Map</a></li>
+            <li><a href="{{ url_for('main.logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <div class="welcome-banner">
+            <h1>Welcome to Jamaica Plumbing Services!</h1>
+            <p>Finding reliable plumbing services has never been easier. Our platform connects you with the best plumbers in your area, offering a wide range of services to meet all your plumbing needs. Whether you need emergency repairs, regular maintenance, or new installations, we've got you covered.</p>
+        </div>
+        <div class="welcome-section">
+            <img src="{{ url_for('static', filename='bathroom-faucet.jpg') }}" alt="Bathroom Faucet" class="welcome-image">
+        </div>
+        <div class="features-section">
+            <h2>Features:</h2>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='faucet-repair.jpg') }}" alt="Faucet Repair" class="feature-image">
+                <p><strong>Easy Booking:</strong> Schedule appointments with just a few clicks.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='plumber-wrench.jpg') }}" alt="Plumber Wrench" class="feature-image">
+                <p><strong>Service Ratings:</strong> Check reviews and ratings to find the most reliable plumbers.</p>
+            </div>
+            <div class="feature-item">
+                <img src="{{ url_for('static', filename='full-bathroom.jpg') }}" alt="Full Bathroom" class="feature-image">
+                <p><strong>Real-Time Updates:</strong> Plumbers update their status in real-time, so you always know who is available.</p>
+            </div>
+            <div class="feature-item">
+                <p><strong>Secure Payments:</strong> Pay for services securely through our platform.</p>
+            </div>
+            <div class="feature-item">
+                <p><strong>Comprehensive Profiles:</strong> View detailed profiles of plumbers, including their specialties and reviews from other customers.</p>
+            </div>
+        </div>
+        <div class="testimonials-section">
+            <h2>Customer Testimonials</h2>
+            <div class="testimonial">
+                <p>"Jamaica Plumbing Services saved the day! Our plumber was prompt, professional, and fixed the issue quickly." - Jane Doe</p>
+            </div>
+            <div class="testimonial">
+                <p>"I love the convenience of booking online and being able to read reviews before choosing a plumber." - John Smith</p>
+            </div>
+        </div>
+        <div class="call-to-action">
+            <h2>Ready to Book a Service?</h2>
+            <p>Click below to find the best plumbers in your area and schedule your appointment today!</p>
+            <a href="{{ url_for('main.book_service', service_id=1) }}" class="btn btn-primary">Book a Service</a>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Get to Know Us</h3>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('main.about') }}">About Us</a></li>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('main.book_service', service_id=1) }}">Book a Service</a></li>
+                    <li><a href="{{ url_for('main.view_services') }}">View Services</a></li>
+                    <li><a href="{{ url_for('main.profile') }}">Plumber Profiles</a></li>
+                    <li><a href="#">Reviews & Ratings</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Customer Support</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Account</h3>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('main.profile') }}">My Account</a></li>
+                    <li><a href="{{ url_for('main.view_bookings') }}">My Bookings</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Order History</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Jamaica Plumbing Services. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
